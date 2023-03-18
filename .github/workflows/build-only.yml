@@ -78,11 +78,12 @@ jobs:
           submodules: recursive
       - name: Install NonDex
         run: |
+          ls
           cd ./NonDex
           mvn install
           cd ..
       - name: Run all tests
-        run: mvn nondex:nondex -DnondexRuns=20 [in dist]
+        run: mvn nondex:nondex -DnondexRuns=20
       
 
 
