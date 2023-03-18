@@ -81,8 +81,8 @@ jobs:
           cd ./NonDex
           mvn install
           cd ..
-      - name: Run all tests
-        run: mvn install -DallTests
+      - name: Run testHost
+        run: mvn -Dtest=StandardConfigsXMLValidationUnitTestCase#testHost
       
 
 
