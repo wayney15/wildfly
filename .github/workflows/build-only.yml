@@ -1,7 +1,7 @@
 name: WildFly Build
 
 on:
-  pull_request:
+  push:
   workflow_dispatch:
     inputs:
       os:
@@ -70,5 +70,21 @@ jobs:
           echo "Cleaning SNAPSHOTS from $LOCAL_REPO"
           if [ -d "$LOCAL_REPO" ]; then find "$LOCAL_REPO" -name "*SNAPSHOT*" | xargs -I {} rm -rfv "{}"; fi
         shell: bash
-      - name: Build with Maven Java 11 - ${{ matrix.os }} -Dquickly
-        run: mvn -U -B -Dquickly
+      - name: Check out NonDex
+        uses: actions/checkout@master
+        with:
+          repository: TestingResearchIllinois/NonDex
+          path: ./NonDex
+          submodules: recursive
+      - name: Install NonDex
+        run: |
+          cd ./NonDex
+          mvn install
+          cd ..
+      - name: Run all tests
+        run: mvn install -DallTests
+      
+
+
+
+
