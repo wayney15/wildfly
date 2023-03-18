@@ -3,6 +3,7 @@ on:
   pull_request_target:
     branches:
       - main
+      
 env:
   # Repository where the cloud tests will be run
   REPOSITORY: wildfly-extras/wildfly-cloud-tests
