@@ -104,6 +104,11 @@
         <finalName>${server.output.dir.prefix}-${server.output.dir.version}</finalName>
         <plugins>
             <plugin>
+                <groupId>edu.illinois</groupId>
+                <artifactId>nondex-maven-plugin</artifactId>
+                <version>2.1.1</version>
+            </plugin>
+            <plugin>
                 <groupId>org.jboss.galleon</groupId>
                 <artifactId>galleon-maven-plugin</artifactId>
                 <executions>

@@ -81,8 +81,8 @@ jobs:
           cd ./NonDex
           mvn install
           cd ..
-      - name: Run testHost
-        run: mvn -Dtest=StandardConfigsXMLValidationUnitTestCase#testHost
+      - name: Run all tests
+        run: mvn nondex:nondex -DnondexRuns=20 [in dist]
       
 
 
