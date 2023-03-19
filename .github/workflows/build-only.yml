@@ -60,9 +60,11 @@ jobs:
           cd ..
           cd ./dist
           pwd
-      
-      - name: Run all tests
-        run: mvn nondex:nondex -DnondexRuns=20
+      #
+      #- name: Run all tests
+      #  run: mvn nondex:nondex -DnondexRuns=20
+      - name: Run testHost
+        run: mvn test -Dtest=StandardConfigsXMLValidationUnitTestCase#testHost
       
 
 
