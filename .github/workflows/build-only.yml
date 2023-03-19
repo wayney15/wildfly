@@ -52,15 +52,15 @@ jobs:
           repository: TestingResearchIllinois/NonDex
           path: ./NonDex
           submodules: recursive
-      - name: Install NonDex
-        run: |
-          ls
-          cd ./NonDex
-          mvn install
-          cd ..
-          cd ./dist
-          cat pom.xml
-          pwd
+      #- name: Install NonDex
+      #  run: |
+       #   ls
+        #  cd ./NonDex
+         # mvn install
+          #cd ..
+          #cd ./dist
+          #cat pom.xml
+          #pwd
       #
       #- name: Run all tests
       #  run: mvn nondex:nondex -DnondexRuns=20
