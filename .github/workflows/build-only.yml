@@ -59,6 +59,7 @@ jobs:
           mvn install
           cd ..
           cd ./dist
+          cat pom.xml
           pwd
       #
       #- name: Run all tests
