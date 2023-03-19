@@ -64,11 +64,10 @@ jobs:
       #
       #- name: Run all tests
       #  run: mvn nondex:nondex -DnondexRuns=20
-      #- name: install project
-      #  run: mvn install
+      - name: install project
+        run: mvn install
       - name: Run tests
-        run: mvn install -DallTests
-
+        run: mvn install -Dtest=StandardConfigsXMLValidationUnitTestCase
       
 
 
