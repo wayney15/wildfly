@@ -82,6 +82,8 @@ jobs:
           cd ./NonDex
           mvn install
           cd ..
+          pwd
+      
       - name: Run all tests
         run: mvn nondex:nondex -DnondexRuns=20
       
