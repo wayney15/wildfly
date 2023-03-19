@@ -62,13 +62,13 @@ jobs:
           #cat pom.xml
           #pwd
       #
-      - name: install project
-        run: mvn install
-      - name: Run all tests with NonDex
-        run: mvn nondex:nondex -DnondexRuns=20
+      #- name: install project
+      #  run: mvn install
+      #- name: Run all tests with NonDex
+      #  run: mvn nondex:nondex -DnondexRuns=20
       
-      #- name: Run tests
-      #  run: mvn install -Dtest=StandardConfigsXMLValidationUnitTestCase
+      - name: Run tests
+        run: mvn install -DallTests
       
 
 
