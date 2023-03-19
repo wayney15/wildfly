@@ -26,7 +26,7 @@ jobs:
   quick-build:
     name: WildFly Build -Dquickly
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 30
+    timeout-minutes: 300
     strategy:
       fail-fast: false
       matrix:
@@ -46,12 +46,12 @@ jobs:
           echo "Cleaning SNAPSHOTS from $LOCAL_REPO"
           if [ -d "$LOCAL_REPO" ]; then find "$LOCAL_REPO" -name "*SNAPSHOT*" | xargs -I {} rm -rfv "{}"; fi
         shell: bash
-      - name: Check out NonDex
-        uses: actions/checkout@master
-        with:
-          repository: TestingResearchIllinois/NonDex
-          path: ./NonDex
-          submodules: recursive
+      #- name: Check out NonDex
+      #  uses: actions/checkout@master
+      #  with:
+      #    repository: TestingResearchIllinois/NonDex
+      #    path: ./NonDex
+      #    submodules: recursive
       #- name: Install NonDex
       #  run: |
        #   ls
@@ -64,10 +64,11 @@ jobs:
       #
       #- name: Run all tests
       #  run: mvn nondex:nondex -DnondexRuns=20
-      - name: install project
-        run: mvn install
+      #- name: install project
+      #  run: mvn install
       - name: Run tests
-        run: mvn test -Dtest=StandardConfigsXMLValidationUnitTestCase
+        run: mvn install -DallTests
+
       
 
 
