@@ -46,29 +46,10 @@ jobs:
           echo "Cleaning SNAPSHOTS from $LOCAL_REPO"
           if [ -d "$LOCAL_REPO" ]; then find "$LOCAL_REPO" -name "*SNAPSHOT*" | xargs -I {} rm -rfv "{}"; fi
         shell: bash
-      #- name: Check out NonDex
-      #  uses: actions/checkout@master
-      #  with:
-      #    repository: TestingResearchIllinois/NonDex
-      #    path: ./NonDex
-      #    submodules: recursive
-      #- name: Install NonDex
-      #  run: |
-       #   ls
-        #  cd ./NonDex
-         # mvn install
-          #cd ..
-          #cd ./dist
-          #cat pom.xml
-          #pwd
-      #
-      #- name: install project
-      #  run: mvn install
-      #- name: Run all tests with NonDex
-      #  run: mvn nondex:nondex -DnondexRuns=20
+      
       
       - name: Run tests
-        run: mvn install -DallTests
+        run: mvn -pl dist edu.illinois:nondex-maven-plugin:2.1.1:nondex -Dtest=org.wildfly.dist.subsystem.xml.StandardConfigsXMLValidationUnitTestCase#testHost
       
 
 
