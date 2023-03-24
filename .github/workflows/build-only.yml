@@ -47,7 +47,8 @@ jobs:
           if [ -d "$LOCAL_REPO" ]; then find "$LOCAL_REPO" -name "*SNAPSHOT*" | xargs -I {} rm -rfv "{}"; fi
         shell: bash
       
-      
+      - name: Install
+        run: mvn clean install -DskipTests -pl dist -am
       - name: Run tests
         run: mvn -pl dist edu.illinois:nondex-maven-plugin:2.1.1:nondex -Dtest=org.wildfly.dist.subsystem.xml.StandardConfigsXMLValidationUnitTestCase#testHost
       
