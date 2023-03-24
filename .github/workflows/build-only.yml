@@ -50,8 +50,8 @@ jobs:
       - name: Install
         run: mvn clean install -DskipTests -pl dist -am
       - name: Run tests
-        #run: mvn -pl dist edu.illinois:nondex-maven-plugin:2.1.1:nondex -Dtest=org.wildfly.dist.subsystem.xml.StandardConfigsXMLValidationUnitTestCase#testHost
-        run: mvn -pl dist test -Dtest=org.wildfly.dist.subsystem.xml.StandardConfigsXMLValidationUnitTestCase#testHost
+        run: mvn -pl dist edu.illinois:nondex-maven-plugin:2.1.1:nondex -Dtest=org.wildfly.dist.subsystem.xml.StandardConfigsXMLValidationUnitTestCase#testHost
+        #run: mvn -pl dist test -Dtest=org.wildfly.dist.subsystem.xml.StandardConfigsXMLValidationUnitTestCase#testHost
       
 
 
