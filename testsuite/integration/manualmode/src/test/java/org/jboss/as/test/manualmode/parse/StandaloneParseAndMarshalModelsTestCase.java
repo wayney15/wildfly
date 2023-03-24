@@ -1,6 +1,6 @@
 /*
  * JBoss, Home of Professional Open Source.
- * Copyright 2011, Red Hat, Inc., and individual contributors
+ * Copyright 2023, Red Hat Middleware LLC, and individual contributors
  * as indicated by the @author tags. See the copyright.txt file in the
  * distribution for a full listing of individual contributors.
  *
@@ -19,38 +19,36 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
+package org.jboss.as.test.manualmode.parse;
 
-package org.jboss.as.test.integration.ee.injection.resource.infinispan;
+import java.nio.file.Path;
+import java.util.List;
 
-import jakarta.inject.Inject;
-
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.logging.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 /**
- * Reproducer for WFLY-11817.
- * Validates Weld injection of an on-demand JNDI binding.
- * @author Paul Ferraro
+ * Tests the standalone configuration files can be parsed and marshalled.
+ *
+ * @author <a href="mailto:jperkins@redhat.com">James R. Perkins</a>
  */
-@RunWith(Arquillian.class)
-public class InfinispanCdiTestCase {
-    @Deployment
-    public static Archive<?> deployment() {
-        JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "infinispan-cdi.jar");
-        jar.addClasses(InfinispanCdiBean.class, InfinispanCdiTestCase.class);
-        return jar;
+@RunWith(Parameterized.class)
+public class StandaloneParseAndMarshalModelsTestCase extends AbstractParseAndMarshalModelsTestCase {
+    private static final Logger LOGGER = Logger.getLogger(StandaloneParseAndMarshalModelsTestCase.class);
+
+    @Parameterized.Parameters
+    public static List<Path> data() {
+        return resolveConfigFiles("standalone", "configuration");
     }
 
-    @Inject
-    private InfinispanCdiBean bean;
+    @Parameterized.Parameter
+    public Path configFile;
 
     @Test
-    public void test() {
-        this.bean.test();
+    public void configFiles() throws Exception {
+        LOGGER.infof("Testing config file %s", configFile);
+        standaloneXmlTest(configFile.toFile());
     }
 }
